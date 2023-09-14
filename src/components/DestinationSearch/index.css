@@ -33,7 +33,11 @@
   background-color: transparent;
   width: 80%;
 }
-
+.search-icon {
+  width: 20px;
+  margin-top: 5px;
+  height: 10px;
+}
 .list-items-container {
   display: flex;
   justify-content: center;
