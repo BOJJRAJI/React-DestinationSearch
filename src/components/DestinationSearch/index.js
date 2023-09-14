@@ -27,7 +27,12 @@ class DestinationSearch extends Component {
               className="input-element"
               onChange={this.changeSearch}
             />
-            <AiOutlineSearch />
+
+            <img
+              alt="search icon"
+              src="https://assets.ccbp.in/frontend/react-js/destinations-search-icon-img.png "
+              className="search-icon"
+            />
           </div>
           <ul className="list-items-container">
             {filterData.map(item => (
