@@ -1,42 +1,40 @@
 import {Component} from 'react'
-import DestinationItem from '../DestinationItem'
 import './index.css'
+import {AiOutlineSearch} from 'react-icons/ai'
+import DestinationItem from '../DestinationItem'
 
 class DestinationSearch extends Component {
   state = {searchInput: ''}
 
-  getSearchInput = event => {
-    this.setState({searchInput: event.target.value})
+  changeSearch = e => {
+    this.setState({searchInput: e.target.value})
   }
 
   render() {
-    const {searchInput} = this.state
     const {destinationsList} = this.props
-    const searchResults = destinationsList.filter(eachPlace =>
-      eachPlace.name.toLowerCase().includes(searchInput.toLowerCase()),
+    const {searchInput} = this.state
+    const filterData = destinationsList.filter(item =>
+      item.name.toLowerCase().includes(searchInput.toLowerCase()),
     )
     return (
       <div className="bg-container">
-        <h1 className="heading">Destination Search</h1>
-        <div className="search-container">
-          <input
-            type="search"
-            value={searchInput}
-            onChange={this.getSearchInput}
-            className="input-element"
-            placeholder="search"
-          />
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/destinations-search-icon-img.png"
-            className="search-icon"
-            alt="search icon"
-          />
+        <div className="card-container">
+          <h1 className="card-heading">Destination Search</h1>
+          <div className="search-container">
+            <input
+              type="search"
+              placeholder="Search"
+              className="input-element"
+              onChange={this.changeSearch}
+            />
+            <AiOutlineSearch />
+          </div>
+          <ul className="list-items-container">
+            {filterData.map(item => (
+              <DestinationItem details={item} key={item.id} />
+            ))}
+          </ul>
         </div>
-        <ul className="places-container">
-          {searchResults.map(eachPlace => (
-            <DestinationItem placeDetails={eachPlace} key={eachPlace.id} />
-          ))}
-        </ul>
       </div>
     )
   }
